@@ -4,7 +4,7 @@ import { DoubleSide, Color, Mesh, Group, Fog, Euler, TextureLoader} from "three"
 
 import { Canvas, useThree, useFrame, useLoader} from '@react-three/fiber'
 
-import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles} from "@react-three/drei"
+import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trail} from "@react-three/drei"
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -92,7 +92,18 @@ function MyScene(){
 
             <group position={[0, 0, 0]} ref={groupRef}>
 
-                <XWing/>
+                <Trail
+                    width={32} 
+                    attenuation={(width) => width/3}
+                    color={'yellow'}
+                    length={24} 
+                    decay={3} 
+                    local={false} 
+                >
+
+                    <XWing/>
+
+                </Trail>
 
             </group>
 
