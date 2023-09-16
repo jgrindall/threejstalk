@@ -7,3 +7,24 @@ html, body, #root{
 body{
     overflow: hidden;
 }
+
+.block{
+    font-family: 'Verdana', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    width:45px;
+    height: 45px;
+    color: #222;
+    padding:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.block:hover{
+    background-color: #ddd;
+    transform: scale(1.5);
+    transition: all 0.1s linear;
+    color:black
+}

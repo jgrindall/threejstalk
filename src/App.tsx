@@ -4,8 +4,45 @@ import { DoubleSide, Color, Mesh, Group, Fog, Euler} from "three"
 
 import { Canvas, useThree, useFrame} from '@react-three/fiber'
 
-import {PerspectiveCamera, OrbitControls, Image, Text, Svg} from "@react-three/drei"
+import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles} from "@react-three/drei"
 
+function Box(){
+    return (
+
+        <group>
+
+            <mesh
+                position={[0, 6, 0]}
+                castShadow
+                receiveShadow
+            >
+                <boxGeometry args={[12, 12, 12]}></boxGeometry>
+                <meshStandardMaterial color={"#E53935"}>
+                </meshStandardMaterial>
+                
+            </mesh>
+            
+            <Html position={[7, 13, 7]}>
+                <div className='block'>
+                   #
+                </div>
+            </Html>
+
+            <Sparkles
+                position={[0, 6, 0]}
+                color="red"
+                size={64}
+                scale={16}
+                count={150}
+                noise={20}
+                speed={5}
+            />
+
+        </group>
+
+    )
+
+}
 
 /**
  * A scene consisting of a blue floor, a red box and a green cylinder
@@ -28,15 +65,7 @@ function MyScene(){
     return (
         <group>
 
-            <mesh
-                position={[0, 6, 0]}
-                castShadow
-                receiveShadow
-            >
-                <boxGeometry args={[12, 12, 12]}></boxGeometry>
-                <meshStandardMaterial color={"#E53935"}>
-                </meshStandardMaterial>
-            </mesh>
+            <Box/>
 
             <group position={[0, 0, 0]} ref={groupRef}>
 
