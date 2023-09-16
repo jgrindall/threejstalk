@@ -1,10 +1,10 @@
 import { RefObject, useRef, useState } from "react"
 
-import { DoubleSide, Color, Mesh, Group, Fog, Euler, TextureLoader} from "three"
+import { DoubleSide, Color, Mesh, Group, Fog, Euler, TextureLoader, Vector3Tuple} from "three"
 
 import { Canvas, useThree, useFrame, useLoader} from '@react-three/fiber'
 
-import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trail} from "@react-three/drei"
+import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trail, useGLTF} from "@react-three/drei"
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -21,6 +21,36 @@ function XWing(){
         </group>
     )
 }
+
+
+/**
+ * Load a gltf file. 
+ * Use gltftojsx to generate the JSX
+ * @param props 
+ * @returns 
+ */
+function StormTrooper(props: {position: Vector3Tuple}){
+    const ref:RefObject<Group> = useRef<Group>() as RefObject<Group>
+    const gltf:any = useGLTF("./dancing_stormtrooper.glb")
+
+    return (
+        <group ref={ref}>
+            <group position={props.position} scale={[7, 7, 7]}>
+                <primitive object={gltf.nodes.mixamorigHips_02 } />
+                <skinnedMesh
+                    castShadow
+                    receiveShadow
+                    material={gltf.materials.Stormtroopermat}
+                    geometry={gltf.nodes.Object_7.geometry}
+                    skeleton={gltf.nodes.Object_7.skeleton}
+                    position={[0, 0, 0]}
+                    rotation={[0, 0, 0]}
+                />
+            </group>
+        </group>
+    )
+}
+
 
 function Box(){
 
@@ -63,6 +93,8 @@ function Box(){
             />
 
             <ComponentUsingMemo/>
+
+            <StormTrooper position={[25, 0, 30]}/>
 
         </group>
 
