@@ -1,6 +1,8 @@
-import { DoubleSide, Color, Fog} from "three"
+import { RefObject, useRef } from "react"
 
-import { Canvas, useThree} from '@react-three/fiber'
+import { DoubleSide, Color, Mesh, Group, Fog} from "three"
+
+import { Canvas, useThree, useFrame} from '@react-three/fiber'
 
 import {PerspectiveCamera, OrbitControls} from "@react-three/drei"
 
@@ -14,6 +16,14 @@ function MyScene(){
     const {scene} = useThree()
     scene.background = new Color("#212121")
     scene.fog = new Fog(new Color("#dddddd"), 25, 400)
+    
+    const cylinderRef:RefObject<Mesh> = useRef<Mesh>() as RefObject<Mesh>
+    const groupRef: RefObject<Group> = useRef<Group>() as RefObject<Group>
+
+    useFrame((_, delta)=>{
+        groupRef.current?.rotateY(delta * 2)
+        cylinderRef.current?.rotateZ(delta * 2)
+    })
 
     return (
         <group>
@@ -28,14 +38,19 @@ function MyScene(){
                 </meshStandardMaterial>
             </mesh>
 
-            <mesh
-                position={[16, 7, -16]}
-                castShadow
-                receiveShadow 
-            >
-                <cylinderGeometry args={[4, 4, 8, 32]}></cylinderGeometry>
-                <meshStandardMaterial color={"#43A047"}></meshStandardMaterial>
-            </mesh>
+            <group position={[0, 0, 0]} ref={groupRef}>
+
+                <mesh
+                    ref={cylinderRef}
+                    position={[16, 7, -16]}
+                    castShadow
+                    receiveShadow 
+                >
+                    <cylinderGeometry args={[4, 4, 8, 32]}></cylinderGeometry>
+                    <meshStandardMaterial color={"#43A047"}></meshStandardMaterial>
+                </mesh>
+
+            </group>
 
             <mesh
                 position={[0, -0.05, 0]}
