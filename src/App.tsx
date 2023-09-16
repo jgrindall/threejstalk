@@ -10,6 +10,10 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { ComponentUsingMemo, ComponentNotUsingMemo } from "./Memo";
 
+import { Physics } from "@react-three/cannon";
+
+import { MyPhysicsScene } from "./Physics";
+
 /**
  * Load a gltf file
  */
@@ -183,6 +187,15 @@ function App() {
             <OrbitControls/>
 
             <MyScene/>
+
+            <Physics defaultContactMaterial={
+                {
+                    friction: 5, 
+                    restitution: 0.5
+                }
+            }>
+                <MyPhysicsScene/>
+            </Physics>
 
             <ambientLight
                 intensity={0.3}
