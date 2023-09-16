@@ -6,6 +6,21 @@ import { Canvas, useThree, useFrame, useLoader} from '@react-three/fiber'
 
 import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles} from "@react-three/drei"
 
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+
+/**
+ * Load a gltf file
+ */
+function XWing(){
+    const gltf = useLoader(GLTFLoader, "./x-wing.glb");
+    return (
+        <group castShadow position={[17, 20, 17]} scale={1.5} rotation={[0, 3*Math.PI/4, 0]}>
+            <primitive castShadow object={gltf.scene}></primitive>
+        </group>
+    )
+}
+
 function Box(){
 
     const [count, setCount] = useState(0)
@@ -77,15 +92,7 @@ function MyScene(){
 
             <group position={[0, 0, 0]} ref={groupRef}>
 
-                <mesh
-                    ref={cylinderRef}
-                    position={[16, 7, -16]}
-                    castShadow
-                    receiveShadow 
-                >
-                    <cylinderGeometry args={[4, 4, 8, 32]}></cylinderGeometry>
-                    <meshStandardMaterial color={"#43A047"}></meshStandardMaterial>
-                </mesh>
+                <XWing/>
 
             </group>
 
