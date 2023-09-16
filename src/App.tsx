@@ -53,7 +53,7 @@ function MyScene(){
  * */
 function App() {
     return (
-        <Canvas>
+        <Canvas shadows>
             <PerspectiveCamera
                 makeDefault
                 position={[40, 70, 100]}
@@ -63,7 +63,7 @@ function App() {
             <MyScene/>
 
             <ambientLight
-                intensity={1}
+                intensity={0.3}
             />
 
             <pointLight
