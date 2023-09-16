@@ -8,6 +8,7 @@ import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trai
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+import { ComponentUsingMemo, ComponentNotUsingMemo } from "./Memo";
 
 /**
  * Load a gltf file
@@ -60,6 +61,8 @@ function Box(){
                 noise={20}
                 speed={5}
             />
+
+            <ComponentUsingMemo/>
 
         </group>
 
