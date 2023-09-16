@@ -4,7 +4,7 @@ import { DoubleSide, Color, Mesh, Group, Fog, Euler, TextureLoader, Vector3Tuple
 
 import { Canvas, useThree, useFrame, useLoader} from '@react-three/fiber'
 
-import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trail, useGLTF} from "@react-three/drei"
+import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles, Trail, useGLTF, useAnimations} from "@react-three/drei"
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -32,6 +32,10 @@ function XWing(){
 function StormTrooper(props: {position: Vector3Tuple}){
     const ref:RefObject<Group> = useRef<Group>() as RefObject<Group>
     const gltf:any = useGLTF("./dancing_stormtrooper.glb")
+
+    const { actions, names } = useAnimations(gltf.animations, ref)
+    const anim = actions[names[0]]
+    anim?.play()
 
     return (
         <group ref={ref}>
