@@ -4,13 +4,33 @@ import { Canvas} from '@react-three/fiber'
 
 import {PerspectiveCamera, OrbitControls} from "@react-three/drei"
 
+
 /**
- * A scene consisting of a blue floor
+ * A scene consisting of a blue floor, a red box and a green cylinder
  * @returns 
  */
 function MyScene(){ 
     return (
         <group>
+
+            <mesh
+                position={[0, 6, 0]}
+                castShadow
+                receiveShadow
+            >
+                <boxGeometry args={[12, 12, 12]}></boxGeometry>
+                <meshStandardMaterial color={"#E53935"}>
+                </meshStandardMaterial>
+            </mesh>
+
+            <mesh
+                position={[16, 7, -16]}
+                castShadow
+                receiveShadow 
+            >
+                <cylinderGeometry args={[4, 4, 8, 32]}></cylinderGeometry>
+                <meshStandardMaterial color={"#43A047"}></meshStandardMaterial>
+            </mesh>
 
             <mesh
                 position={[0, -0.05, 0]}
