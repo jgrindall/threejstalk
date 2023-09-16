@@ -1,10 +1,10 @@
 import { RefObject, useRef } from "react"
 
-import { DoubleSide, Color, Mesh, Group, Fog} from "three"
+import { DoubleSide, Color, Mesh, Group, Fog, Euler} from "three"
 
 import { Canvas, useThree, useFrame} from '@react-three/fiber'
 
-import {PerspectiveCamera, OrbitControls} from "@react-three/drei"
+import {PerspectiveCamera, OrbitControls, Image, Text, Svg} from "@react-three/drei"
 
 
 /**
@@ -60,6 +60,14 @@ function MyScene(){
                 <planeGeometry args={[80, 80]}/>
                 <meshStandardMaterial color={"#1565C0"} side={DoubleSide}/>
             </mesh>
+
+            <Image url="./join_empire.jpg" position={[-30, 10, 0]} scale={20} rotation={new Euler(0, Math.PI/2, 0)}/>
+            
+            <Svg src="./darth_vader.svg" scale={[0.03, 0.03, 0.03]} position={[-25, 15, 25]}/>
+            
+            <Text color="yellow" anchorX="center" maxWidth={30} position={[-20, 10, -30]} anchorY="middle" fontSize={2}>
+                In a galaxy far, far away... It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.
+            </Text>
 
         </group>
     )
