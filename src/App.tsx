@@ -1,6 +1,6 @@
-import { DoubleSide} from "three"
+import { DoubleSide, Color, Fog} from "three"
 
-import { Canvas} from '@react-three/fiber'
+import { Canvas, useThree} from '@react-three/fiber'
 
 import {PerspectiveCamera, OrbitControls} from "@react-three/drei"
 
@@ -10,6 +10,11 @@ import {PerspectiveCamera, OrbitControls} from "@react-three/drei"
  * @returns 
  */
 function MyScene(){ 
+
+    const {scene} = useThree()
+    scene.background = new Color("#212121")
+    scene.fog = new Fog(new Color("#dddddd"), 25, 400)
+
     return (
         <group>
 
