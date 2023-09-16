@@ -1,14 +1,16 @@
 import { RefObject, useRef, useState } from "react"
 
-import { DoubleSide, Color, Mesh, Group, Fog, Euler} from "three"
+import { DoubleSide, Color, Mesh, Group, Fog, Euler, TextureLoader} from "three"
 
-import { Canvas, useThree, useFrame} from '@react-three/fiber'
+import { Canvas, useThree, useFrame, useLoader} from '@react-three/fiber'
 
 import {PerspectiveCamera, OrbitControls, Image, Text, Svg, Html, Sparkles} from "@react-three/drei"
 
 function Box(){
 
     const [count, setCount] = useState(0)
+
+    const texture = useLoader(TextureLoader, './rebel_alliance.jpg')
     
     return (
 
@@ -21,7 +23,10 @@ function Box(){
                 onClick={()=> setCount(count + 1)}
             >
                 <boxGeometry args={[12, 12, 12]}/>
-                <meshStandardMaterial color={"#E53935"}></meshStandardMaterial>
+                <meshStandardMaterial
+                    map={texture}
+                    color={count % 2 === 0 ? "#666" : "#E53935"}>
+                </meshStandardMaterial>
                 
             </mesh>
             
