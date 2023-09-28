@@ -45,6 +45,18 @@ function App() {
             <ambientLight
                 intensity={1}
             />
+
+            <pointLight
+                castShadow
+                position={[-10, 60, 15]}
+                intensity={0.075}
+            />
+
+            <spotLight
+                castShadow
+                position={[10, 40, -15]}
+                intensity={0.35}
+            />
         </Canvas>
     )
 }
